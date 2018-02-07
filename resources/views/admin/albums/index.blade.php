@@ -8,7 +8,6 @@
 <style>
  .main-album{
 	 text-align: center;
-	
  }
  
  .img-thumbnail{
@@ -76,15 +75,18 @@
                 {!! Form::open(['method' => 'DELETE', 'route'=>['album.destroy', $album->id]]) !!}
                 {!! Form::button('<i class="fa fa-trash" style="font-size:31px; color : red"></i>', ['class' => 'deletecategory','type' => 'submit']) !!}
                 {!! Form::close() !!}  
-            </a>
-                
+            </a>                
      @endif
-               <br>
-
+            <br>
             <div id = "divform">
               <button value="{{ $album->id }}" class="btn btn-primary btn-xm upload"><i class="fa fa-file-photo-o"></i> Upload Image</button>
+              <div class="col-xs-3">
+                <button type="button" class="btn btn-success btn-sl">
+                    <span class="glyphicon glyphicon-shopping-cart"></span> Add to Cart
+                </button>
+              </div>
                 <center>
-                <div class="modal fade" id="modal" ">
+                <div class="modal fade" id="modal">
                   <div class="modal-content" style=" position:absolute;top:10% !important;margin:auto 35%;width:40%;height:50%;">
                    <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>

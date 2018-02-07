@@ -18,41 +18,44 @@ class Image extends Model
     {
     	return $this->belongsTo('App\Album');
     }
+    
     public function getAlbum()
     {
         return $this->album_id;
     }
+    
     public function user()
     {
     	return $this->belongsTo('App\User');
     }
+
     public function free()
     {
          //$img->contains('album_id',0);
         return ($this->album_id == 0);
     }
+    
     public function showImage()
     {
-
-         return (Auth::user()->isAdmin() || ($this->user_id==Auth::user()->id
-
-                    || $this->active()) );
-
+        return (Auth::user()->isAdmin() || ($this->user_id==Auth::user()->id
+                || $this->active()) );
     }
 
     public function editImage()
     {
         return Auth::user()->isAdmin() || ($this->user->id==Auth::user()->id);
     }
+
     public function activate()
     {
-         $this->active=1;
-         $this->save();
+        $this->active=1;
+        $this->save();
     }
-     public function deactivate()
+
+    public function deactivate()
     {
-         $this->active=0;
-         $this->save();
+        $this->active=0;
+        $this->save();
     }
    /* public function usersImages()
     {
@@ -60,5 +63,4 @@ class Image extends Model
                 ->orWhere('user_id','=',Auth::user()->id)
                 ->get();
     }*/
- 
 }

@@ -34,6 +34,30 @@ Route::group(['middleware' => ['AdminMiddleware', 'auth']], function()
 
 /*******************************   AUTH USER  *********************************************/
 Route::group(['middleware' => 'auth'], function () {
+
+  // CART BEGIN
+
+  Route::get('/checkout', [
+    'uses' => 'ImageController@getCheckout',
+    'as' => 'checkout',
+  ]);
+  Route::post('/checkout', [
+    'uses' => 'ImageController@postCheckout',
+    'as' => 'checkout',
+  ]);
+  Route::get('/shopping_cart\/', [
+    'uses' => 'ImageController@getShoppingCart',
+    'as' => 'image.getShoppingCart'
+    ]
+  );
+  Route::get('/add_to_cart/{image}', [
+      'uses' => 'ImageController@addImageToCart',
+      'as' => 'image.addImageToCart'
+    ]
+  );
+  
+  // CART END
+
   Route::get('/category','CategoryController@index');
   Route::get('/category/{category}','CategoryController@show');
 

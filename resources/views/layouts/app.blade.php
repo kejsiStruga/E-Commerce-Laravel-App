@@ -223,7 +223,6 @@ color: gray;
 /* If you don't want the footer to be responsive, remove these media queries */
 
 @media (max-width: 880px) {
-
 	.footer-distributed{
 		font: bold 14px sans-serif;
 	}
@@ -240,18 +239,14 @@ color: gray;
 	.footer-distributed .footer-center i{
 		margin-left: 0;
 	}
-
 }
-
-    </style>
-
+</style>
 
 </head>
 <body id="app-layout">
     <nav class="navbar navbar-default navbar-static-top">
         <div class="container">
             <div class="navbar-header">
-
                 <!-- Collapsed Hamburger -->
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
                     <span class="sr-only">Toggle Navigation</span>
@@ -259,30 +254,32 @@ color: gray;
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-
                 <!-- Branding Image -->
                 <span class="navbar-brand" id="p">
                      <i class="fa fa-image"></i> Photo Gallery 
                 </span>
             </div>
-
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav"> 
-
                     <li class="{{ Request::is('category')? 'active' : '' }}"><a href="{{ url('/category') }}"><i class="fa fa-home"></i>Home</a></li>
                     @if(!Auth::guest() && Auth::user()->isAdmin())
-                    <li class="{{ Request::is('user')? 'active' : '' }}"><a href="{{ url('/user') }}"><i class="fa fa-users"></i>Users</a></li>
-                    <li class="{{ Request::is('role')? 'active' : '' }}"><a href="{{ url('/role') }}"><i class="fa fa-user"></i>Roles</a></li>
-                       
+						<li class="{{ Request::is('user')? 'active' : '' }}"><a href="{{ url('/user') }}"><i class="fa fa-users"></i>Users</a></li>
+						<li class="{{ Request::is('role')? 'active' : '' }}"><a href="{{ url('/role') }}"><i class="fa fa-user"></i>Roles</a></li>
                     @endif
-                     @if(!Auth::guest())
-                        
+                    @if(!Auth::guest())
                         <li class="{{ Request::is('album')? 'active' : '' }}"><a href="{{ url('/album') }}"><i class="fa fa-camera"></i>Albums</a></li>
                         <li class="{{ Request::is('image')? 'active' : '' }}"><a href="{{ url('/image') }}"><i class="fa fa-image"></i>Images</a></li>
-                    @endif
+						<li class="{{ Request::is('shopping_cart')? 'active' : '' }}"><a href="{{ route('image.getShoppingCart') }}">Shopping Cart
+							@if(Session::has('cart')) 
+								<span class="badge">
+									{{ Session::get('cart')->totQuantity }}  
+								</span>
+							@endif  
+							</a>	
+						</li>
+				    @endif
                 </ul>
-
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
@@ -291,15 +288,12 @@ color: gray;
                         <li class="{{ Request::is('register')? 'active' : '' }}"><a href="{{ url('/register') }}"><i class="fa fa-sign-out"></i>Register</a></li>
                     @else
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-<i class="fa fa-user"></i>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-user"></i>
                                 Hello {{ Auth::user()->username }} <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                                 <li><a href="{{ url('reset_password') }}"><i class="fa fa-key fa-fw"></i>Change Password</a></li>
-                            
                             </ul>
-                           
                         </li>
                     @endif
                 </ul>
@@ -308,72 +302,50 @@ color: gray;
 				</ul>
             </div>
         </div>
-        
     </nav>
-
+    </nav>
     @yield('content')
-   
     <!-- JavaScripts -->
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
-   
-    <script type="text/javascript" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script> 
-	
+    <script type="text/javascript" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>	
 	<footer class="footer-distributed">
-
-			<div class="footer-left">
-
-				<h3>Creative<span>Artists</span></h3>
-
-				<p class="footer-links">
-					<a href="#">Home</a>
-					
-					
-				</p>
-
-				<p class="footer-company-name">Creative Artists &copy; 2018</p>
+		<div class="footer-left">
+			<h3>Creative<span>Artists</span></h3>
+			<p class="footer-links">
+				<a href="#">Home</a>					
+			</p>
+			<p class="footer-company-name">Creative Artists &copy; 2018</p>
+		</div>
+		<div class="footer-center">
+			<div>
+				<i class="fa fa-map-marker"></i>
+				<p><span>Fakulteti i Shkencave Te Natyres</span> Tirane, Albania</p>
 			</div>
 
-			<div class="footer-center">
-
-				<div>
-					<i class="fa fa-map-marker"></i>
-					<p><span>Fakulteti i Shkencave Te Natyres</span> Tirane, Albania</p>
-				</div>
-
-				<div>
-					<i class="fa fa-phone"></i>
-					<p>0694745884</p>
-				</div>
-
-				<div>
-					<i class="fa fa-envelope"></i>
-					<p><a href="mailto:support@company.com">nensi.skenderi@fshnstudent.info</a></p>
-				</div>
-				<div>
-					<i class="fa fa-envelope"></i>
-					<p><a href="mailto:support@company.com">kejsi.struga@fshnstudent.info</a></p>
-				</div>
-
+			<div>
+				<i class="fa fa-phone"></i>
+				<p>(355)694745884</p>
 			</div>
-
-			<div class="footer-right">
-
-				<p class="footer-company-about">
-					
-					We’ll keep you up to date on the latest developments in the art world and invite you to exclusive events in the <span style="color : #5383d3;">Creative Artists<span> galleries.
-				</p>
-
-				<div class="footer-icons">
-
-					<a href="#"><i class="fa fa-facebook"></i></a>
-					<a href="#"><i class="fa fa-twitter"></i></a>
-					<a href="#"><i class="fa fa-linkedin"></i></a>
-					<a href="#"><i class="fa fa-github"></i></a>
-
-				</div>
-
+			<div>
+				<i class="fa fa-envelope"></i>
+				<p><a href="mailto:support@company.com">nensi.skenderi@fshnstudent.info</a></p>
 			</div>
-
-		</footer>
+			<div>
+				<i class="fa fa-envelope"></i>
+				<p><a href="mailto:support@company.com">kejsi.struga@fshnstudent.info</a></p>
+			</div>
+		</div>
+		<div class="footer-right">
+			<p class="footer-company-about">
+				We’ll keep you up to date on the latest developments in the art world and invite you to exclusive events in the <span style="color : #5383d3;">Creative Artists<span> galleries.
+			</p>
+			<div class="footer-icons">
+				<a href="#"><i class="fa fa-facebook"></i></a>
+				<a href="#"><i class="fa fa-twitter"></i></a>
+				<a href="#"><i class="fa fa-linkedin"></i></a>
+				<a href="#"><i class="fa fa-github"></i></a>
+			</div>
+		</div>
+	</footer>
 </body>
 </html>

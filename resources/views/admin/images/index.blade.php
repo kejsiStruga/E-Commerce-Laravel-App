@@ -46,6 +46,14 @@
         @foreach($r as $image)
         <article class="col-md-4">
               <h2 class="main-img"> {{$image->name}} </h2>
+              <div class="col-xs-1">
+                  {!! Form::open(['method' => 'get', 'route'=>['image.addImageToCart', $image]]) !!}
+                  {!! Form::label('price','$ '. $image->price ) !!}
+                  {!! Form::button('<i class="glyphicon glyphicon-shopping-cart"  style="font-size:20px;"> </i>',
+                  ['style'=>'color:inherit','class'=>'btn-link ', 'type' => 'submit']) !!}
+                  {{ csrf_field() }}
+                  {!! Form::close() !!}
+              </div>
             @if(Auth::user()->isAdmin())
          <a href= "/image/{{$image->id}}"><img src="/uploads/images/{{ $image->path}}" alt="Fotoja nuk gjendet " class = " img-thumbnail img-design">
          </a>   

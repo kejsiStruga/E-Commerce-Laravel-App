@@ -82,8 +82,8 @@ return [
             'driver' => 'sqlsrv',
             'host' => './', // Provide IP address here DESKTOP-49K0THB
             'database' => 'laracast_validate',
-            'username' => 'sa',
-            'password' => 'p@ssw0rd',
+            // 'username' => 'sa',
+            // 'password' => 'p@ssw0rd',
             'prefix' => '',
         ],
 
