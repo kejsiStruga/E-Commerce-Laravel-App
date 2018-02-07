@@ -294,11 +294,9 @@ color: gray;
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
 <i class="fa fa-user"></i>
                                 Hello {{ Auth::user()->username }} <span class="caret"></span></a>
-
-                            
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
-                                <li><a href="{{ url('/reset_password') }}"><i class="fa fa-key fa-fw"></i>Change Password</a></li>
+                                <li><a href="{{ url('reset_password') }}"><i class="fa fa-key fa-fw"></i>Change Password</a></li>
                             
                             </ul>
                            

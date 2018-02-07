@@ -80,10 +80,10 @@ return [
 
         'sqlsrv' => [
             'driver' => 'sqlsrv',
-            'host' => 'DESKTOP-49K0THB', // Provide IP address here
+            'host' => './', // Provide IP address here DESKTOP-49K0THB
             'database' => 'laracast_validate',
             'username' => 'sa',
-            'password' => 'sa',
+            'password' => 'p@ssw0rd',
             'prefix' => '',
         ],
 
