@@ -28,9 +28,9 @@
                         <input type="hidden" name="cmd" value="_cart">  <!-- change _xclick to _cart -->
                         <input type="hidden" name="upload" value="1">  <!-- add this line in your code -->
                         <input type="hidden" name="business" value="nsenensene202020@gmail.com" />
+                        <input type="hidden" name="return" value="http://localhost:8000/paypal_success">
                         <?php
                             $cnt=1;
-                            //  dd($images);
                             foreach($images as $img)
                             {  
                         ?>
@@ -48,6 +48,6 @@
         </div>
      </div>
     @else
-    <h2>No Items in the cart </h2>
+     <h2>No Items in the cart </h2>
     @endif
 @endsection

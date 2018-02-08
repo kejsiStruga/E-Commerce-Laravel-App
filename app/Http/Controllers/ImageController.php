@@ -2,8 +2,11 @@
 namespace App\Http\Controllers;
 use Session;
 use Gate;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use DB;
 use App\Image;
+use Illuminate\Support\Facades\URL;
 use App\Album;
 use File;
 use App\Order;
@@ -131,6 +134,13 @@ class ImageController extends Controller
         $cart = new Cart($c);
         $cart->addImage($image);
         $req->session()->put('cart', $cart);
+
+        // dd(URL::current());
+        // if(URL::current() )
+        $url = URL::current();
+        if (strpos($url, 'paypal_success') !== false) {
+            dd('You have successfully passed the pau[fskldlfjsdklfjkl');
+        }
         return back();
     }
     
@@ -235,5 +245,35 @@ class ImageController extends Controller
         //bsc we cheked out; !!
         Session::forget('cart');
         return redirect()->back();
+    }
+
+    public function successPayPal() 
+    {
+        // dd(Session::get('cart')->images);
+        if(!empty(Session::get('cart')->images))
+        {
+            $images = Session::get('cart')->images;
+            //dd( $images);
+            DB::table('orders')->insert(
+                ['user_id' => Auth::user()->id, 'status' => 1]
+            );
+            $purchased_items=[];
+            $latest_id=DB::table('orders')->orderBy('id', 'desc')->first();
+            $id_latest_paypal_order = json_decode(json_encode($latest_id),true)['ID'];
+            foreach($images as $img)
+            {
+                // var_dump( $img['image']['id'] . 'quantity' .'== '.  $img['qty'], 'price' .  $img['price']);
+                DB::table('order_details')->insert(
+                    ['order_id' => $id_latest_paypal_order, 'art_item_id' => $img['image']['id'], 'quantity' =>  $img['qty'], 'price' =>  $img['price']]
+                );
+            }
+            Session::forget('cart');
+            $obj_images= $images;
+            return view('admin.images.paypal_success')->with(compact('images'));
+        }
+        else 
+        {
+            return view('admin.images.paypal_success');
+        }
     }
 }

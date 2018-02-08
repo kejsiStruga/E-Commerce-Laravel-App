@@ -72,7 +72,7 @@
 @include('errors')
 @if (session('image_removed'))
     <div class="alert alert-success"> 
-                  {{ Session::get('image_removed')  }}  </div>
+     {{ Session::get('image_removed')  }}  </div>
      {{ Session::forget('image_removed') }}
                         
    @endif

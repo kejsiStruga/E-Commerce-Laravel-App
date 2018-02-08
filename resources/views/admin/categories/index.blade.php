@@ -72,29 +72,23 @@
 </div>
 <div class="container">
 @include('errors')
-  @if (Session::has('category_updated'))
-                 
-                 <div class="alert alert-success">
-                   {{ Session::get('category_updated')  }}  
-                 </div>
-                 
-                  {{ Session::forget('category_updated')}}
-
+  @if (Session::has('category_updated'))      
+    <div class="alert alert-success">
+      {{ Session::get('category_updated')  }}  
+    </div>
+    {{ Session::forget('category_updated')}}
   @endif 
-     @if (Session::has('category_created'))
-                 
-                 <div class="alert alert-success">
-                   {{ Session::get('category_created')  }}  
-                 </div>
-                  {{ Session::forget('category_created')}}
-
+  @if (Session::has('category_created'))        
+      <div class="alert alert-success">
+        {{ Session::get('category_created')  }}  
+      </div>
+      {{ Session::forget('category_created')}}
   @endif
-     @if (Session::has('category_deleted'))
-                 
-                 <div class="alert alert-success">
-                   {{ Session::get('category_deleted')  }}  
-                 </div>
-                 {{ Session::forget('category_deleted')}}
+  @if (Session::has('category_deleted'))             
+    <div class="alert alert-success">
+      {{ Session::get('category_deleted')  }}  
+    </div>
+    {{ Session::forget('category_deleted')}}
   @endif 
  @if(Auth::user()->isAdmin())
    <h4><span><a href ="{{ url('/category/create') }}" >>> Create Category</a></span></h4>

@@ -55,6 +55,11 @@ class User extends \Eloquent implements Authenticatable, CanResetPasswordContrac
         return false;
     }
     
+    public function getLoggedInUser() 
+    {
+      return Auth::user();
+    }
+
     public function orders()
     {
       return $this->hasMany('App\Order');

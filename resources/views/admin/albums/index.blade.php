@@ -78,13 +78,13 @@
             </a>                
      @endif
             <br>
-            <div id = "divform">
+            <div id = "divform" style="width: 570px;">
               <button value="{{ $album->id }}" class="btn btn-primary btn-xm upload"><i class="fa fa-file-photo-o"></i> Upload Image</button>
-              <div class="col-xs-3">
+              <!-- <div class="col-xs-3">
                 <button type="button" class="btn btn-success btn-sl">
                     <span class="glyphicon glyphicon-shopping-cart"></span> Add to Cart
                 </button>
-              </div>
+              </div> -->
                 <center>
                 <div class="modal fade" id="modal">
                   <div class="modal-content" style=" position:absolute;top:10% !important;margin:auto 35%;width:40%;height:50%;">

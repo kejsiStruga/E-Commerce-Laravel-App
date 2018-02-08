@@ -22,16 +22,12 @@
           <a href = "/user/{{$image->user->id}}">{{ $image->user->username }}</a></td></h3></tr>
   				<th></th>
   				<tr><h4><th>Status:</th></h4>
-  				<h3><td>{{ ($image->active()) ? 'Active' : 'Not Active' }}</td></h3></tr>
-  					
-  				
+  				<h3><td>{{ ($image->active()) ? 'Active' : 'Not Active' }}</td></h3></tr>  				
   			</table>
 </div>
 </div>
-
 </div>
-<div class="container">
-	
-			<h4><a href="/image" class="btn btn-primary">Back</a></h4>
-</div>
+	<div class="container">
+		<h4><a href="/image" class="btn btn-primary">Back</a></h4>
+	</div>
 @stop

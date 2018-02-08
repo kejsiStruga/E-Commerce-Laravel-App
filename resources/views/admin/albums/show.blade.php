@@ -93,14 +93,16 @@
 					<!-- NENSI PAYPAL -->
 					<div class="container">
 						<div class="row">
-							<div class="col-xs-1">
-								<br>
-								{{ '$ '.$image->price  }}
-								<div class="col-sm-6">
-									<button type="button" class="btn btn-success btn-sm">
-										<span class="glyphicon glyphicon-shopping-cart"></span> Add to Cart
-									</button>
-								</div>
+							<div class="col-sm-6">
+							{!! Form::open(['method' => 'get', 'id' => 'shopping-cart-form', 'route'=>['image.addImageToCart', $image]]) !!}
+							{!! Form::label('price','$ '. $image->price ) !!}
+							{!! Form::button('<i class="glyphicon glyphicon-shopping-cart"  style="font-size:20px;"> </i>',
+								['style'=>'color:inherit;','class'=>'btn-link', 'type' => 'submit']) !!}
+							{{ csrf_field() }}
+							{!! Form::close() !!}
+								<!-- <button type="button" class="btn btn-success btn-sm">
+									<span class="glyphicon glyphicon-shopping-cart"></span> Add to Cart
+								</button> -->
 							</div>
 						</div>
 					</div>

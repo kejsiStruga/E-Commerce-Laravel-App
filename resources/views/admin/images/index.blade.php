@@ -63,10 +63,8 @@
          @endif
 
            <br><br>
-              <div class="body">
-            
+            <div class="body">
             @if(Auth::user()->isAdmin() || $image->editImage() )  
-              
               <a href="/image/{{$image->id}}/edit"  style="color:inherit" class="links-dark edits pull-left">
                 <i class="fa fa-edit" style="font-size:35px; color : #2f6ec0"></i>
             </a>

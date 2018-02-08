@@ -15,6 +15,11 @@ class Cart
         }
     }
 
+    public function order()
+    {
+        return $this->belongsTo('App\Order');
+    }
+
     public function addImage($image)
     {
         $cartImage  = ['qty' => 0, 'price'=>$image->price, 'image'=>$image];

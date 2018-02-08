@@ -20,7 +20,6 @@ class AlbumController extends Controller
 
         if(Auth::user()->isAdmin())
         {
-           
          return view('admin.albums.index')->with('albums', Album::paginate(6));
         }
         else 
@@ -57,10 +56,9 @@ class AlbumController extends Controller
 
             if($req->hasFile('thumbnail'))
             {
-
-           $file = $req->file('thumbnail');
-           $thumbnail = time(). '.'.$file->getClientOriginalExtension();
-           \Image::make($file)->resize(500,500)->save(public_path('/uploads/images/'.$thumbnail));
+                $file = $req->file('thumbnail');
+                $thumbnail = time(). '.'.$file->getClientOriginalExtension();
+                \Image::make($file)->resize(500,500)->save(public_path('/uploads/images/'.$thumbnail));
 
                 $al = new Album;
                 $al->name = $req->name;
@@ -71,10 +69,8 @@ class AlbumController extends Controller
                 ($req->act=='Active')? $al->active=1 : $al->active=0;
                 $al->save();
             
-            Session::flash('album_created', 'Album Successfully Created !');
-            //return redirect()->route('album.index');
-
-         return view('admin.albums.index')->with('albums', Album::paginate(6));
+                Session::flash('album_created', 'Album Successfully Created !');
+                return view('admin.albums.index')->with('albums', Album::paginate(6));
             }
     }
     public function show(Album $album)

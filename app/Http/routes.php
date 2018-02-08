@@ -29,14 +29,16 @@ Route::group(['middleware' => ['AdminMiddleware', 'auth']], function()
     
     // Route::post('reset_password', 'UserController@test_fn');
     // Route::get('/reset_password', 'UserController@test_fn');
-
 });
 
 /*******************************   AUTH USER  *********************************************/
 Route::group(['middleware' => 'auth'], function () {
 
   // CART BEGIN
-
+  Route::get('/paypal_success', [
+    'uses' => 'ImageController@successPayPal',
+    'as' => 'Image.successPayPal'
+  ]);
   Route::get('/checkout', [
     'uses' => 'ImageController@getCheckout',
     'as' => 'checkout',
@@ -67,7 +69,6 @@ Route::group(['middleware' => 'auth'], function () {
     'uses' => 'ImageController@getRemoveImage',
     'as' => 'image.removeImage'
   ]);
-  
   
   // CART END
 
