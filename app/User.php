@@ -34,16 +34,19 @@ class User extends \Eloquent implements Authenticatable, CanResetPasswordContrac
   	public function assignRole(Role $role)
   	{
   		return $this->role()->save($role);
-  	}
+    }
+    
     public function setDefault()
     {
       $r = Role::where('name','=','client')->get();
       return  $this->role()->assignRole($r);
     }
+
     public function hasImages()
     {
       return $this->images->count()>0;
     }
+
     public function isAdmin()
     {
         if ($this->role->name=='admin') {
@@ -52,9 +55,14 @@ class User extends \Eloquent implements Authenticatable, CanResetPasswordContrac
         return false;
     }
     
+    public function orders()
+    {
+      return $this->hasMany('App\Order');
+    }
+
     protected $dates = ['deleted_at'];
   
-	protected $fillable = ['username', 'email', 'password','newpassword_confirmation','newpassword'];
+  	protected $fillable = ['username', 'email', 'password','newpassword_confirmation','newpassword'];
 
     protected $hidden = [
         'password', 'remember_token',

@@ -55,6 +55,19 @@ Route::group(['middleware' => 'auth'], function () {
       'as' => 'image.addImageToCart'
     ]
   );
+  Route::get('/decrease/{id}', [
+    'uses' => 'ImageController@getDecreaseQty',
+    'as' => 'image.decreaseQty'
+  ]);
+  Route::get('/increase/{id}', [
+    'uses' => 'ImageController@getIncreaseQty',
+    'as' => 'image.increaseQty'
+  ]); 
+  Route::get('/remove/{id}', [
+    'uses' => 'ImageController@getRemoveImage',
+    'as' => 'image.removeImage'
+  ]);
+  
   
   // CART END
 

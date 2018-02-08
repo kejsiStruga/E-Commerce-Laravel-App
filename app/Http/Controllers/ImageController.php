@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Image;
 use App\Album;
 use File;
+use App\Order;
 use App\Cart;
 use Validator;
 use Auth;
@@ -141,12 +142,58 @@ class ImageController extends Controller
         }
         $c = Session::get('cart');
         $ct = new Cart($c);
-        return view('admin/images.shopping_cart', ['images' => $ct->images,
-                                                    'totPrice' => $ct->totPrice,
-                                                    ]
-        );
+        return view('admin/images.shopping_cart', [
+            'images' => $ct->images,
+            'totPrice' => $ct->totPrice,
+        ]);
     }
     
+    public function getDecreaseQty($id) 
+    {
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->decreaseQty($id);
+        
+        if(count($cart->images) > 0)
+        {
+            Session::put('cart', $cart);
+        }
+        else
+        {
+            Session::forget('cart');
+        }
+        
+        return redirect()->route('image.getShoppingCart');
+    }
+
+    public function getIncreaseQty($id) 
+    {
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->increaseQty($id);
+        
+        Session::put('cart', $cart);
+        return redirect()->route('image.getShoppingCart');
+    }
+
+    public function getRemoveImage($id) 
+    {
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->removeImage($id);
+        
+        if(count($cart->images) > 0)
+        {
+            Session::put('cart', $cart);
+        }
+        else
+        {
+            Session::forget('cart');
+        }
+
+        return redirect()->route('image.getShoppingCart');
+    }
+
     public function getCheckout()
     {
         if(!Session::has('cart'))
@@ -170,13 +217,18 @@ class ImageController extends Controller
         //on back-end we set the private key
         Stripe::setApiKey('sk_test_B00D8AmIQM0ULB65WlUp1wqe');
         try{
-            Charge::create(array(
+            $charge = Charge::create(array(
                 "amount" => $cart->totPrice * 100,
                 "currency" => "usd",
                 "source" => $req['stripeToken'], // obtained with Stripe.js
                 "description" => "Test Charge"
             ));
-        }catch(\Exception $e)
+            $order = new Order();
+            $order->cart=serialize($cart); // convert the object into string
+            // $order->address=
+            // before clearing we must store the order
+        }
+        catch(\Exception $e)
         {
             return redirect()->route('checkout')->withError($e->getMessage());
         }
