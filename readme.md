@@ -1,4 +1,4 @@
-# Virtual Art Gallery Artists
+# Virtual Art Gallery 
 MSc Project E-Commerce Course PayPal Integration
 
 Open project in terminal *<YOUR_PATH>/CreativeArtistsE-Commerce2017/creative-artists-e-commerce*
