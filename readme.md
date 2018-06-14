@@ -6,3 +6,8 @@ Open project in terminal *<YOUR_PATH>/CreativeArtistsE-Commerce2017/creative-art
 Run *composer install* before running code
 
 Run *php artisan serve* 
+
+
+![](.readme_images/Diagrama Dekompozimit.png)
+
+![](.readme_images/Diagrama Use-Case.png)
