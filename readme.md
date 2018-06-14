@@ -7,7 +7,4 @@ Run *composer install* before running code
 
 Run *php artisan serve* 
 
-
-![](.readme_images/Diagrama Dekompozimit.png)
-
-![](.readme_images/Diagrama Use-Case.png)
+![](.readme_images/Use-Case-Diagram.png)
