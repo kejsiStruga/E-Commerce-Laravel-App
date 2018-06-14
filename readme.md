@@ -8,3 +8,5 @@ Run *composer install* before running code
 Run *php artisan serve* 
 
 ![](.readme_images/Use-Case-Diagram.png)
+
+![](.readme_images/Functional-Decomposition-Diagram.png)
